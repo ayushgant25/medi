@@ -1,0 +1,248 @@
+{
+  "Fungal infection": {
+    "description": "A fungal infection, also known as mycosis, is a disease caused by a fungus. Infections can appear on the skin, nails, lungs, or bloodstream.",
+    "precautions": ["Keep skin clean and dry", "Avoid sharing personal items", "Use antifungal powder in shoes", "Wear breathable clothing"],
+    "see_doctor": false,
+    "severity": "mild"
+  },
+  "Allergy": {
+    "description": "An allergy is an immune system response to a foreign substance. Allergens include pollen, dust mites, pet dander, insect stings, foods, and medications.",
+    "precautions": ["Identify and avoid triggers", "Keep windows closed during high pollen season", "Use air purifiers", "Carry antihistamines"],
+    "see_doctor": false,
+    "severity": "mild"
+  },
+  "GERD": {
+    "description": "Gastroesophageal reflux disease (GERD) is a chronic digestive disease where stomach acid flows back into the esophagus, causing irritation.",
+    "precautions": ["Avoid large meals", "Don't lie down after eating", "Avoid spicy and fatty foods", "Elevate head while sleeping"],
+    "see_doctor": true,
+    "severity": "moderate"
+  },
+  "Chronic cholestasis": {
+    "description": "A condition where bile flow from the liver is reduced or blocked, causing bile to build up in the liver and bloodstream.",
+    "precautions": ["Follow a low-fat diet", "Avoid alcohol", "Take vitamin supplements as prescribed", "Regular liver function monitoring"],
+    "see_doctor": true,
+    "severity": "severe"
+  },
+  "Drug Reaction": {
+    "description": "An adverse drug reaction is an unintended, harmful response to a medication taken at normal doses.",
+    "precautions": ["Stop the suspected medication immediately", "Inform your doctor about all medications", "Carry a medication allergy card", "Monitor for worsening symptoms"],
+    "see_doctor": true,
+    "severity": "severe"
+  },
+  "Peptic ulcer disease": {
+    "description": "Open sores that develop on the inner lining of the stomach and the upper portion of the small intestine. Often caused by H. pylori bacteria or NSAIDs.",
+    "precautions": ["Avoid spicy and acidic foods", "Quit smoking", "Limit alcohol", "Avoid NSAIDs like ibuprofen"],
+    "see_doctor": true,
+    "severity": "moderate"
+  },
+  "AIDS": {
+    "description": "Acquired Immunodeficiency Syndrome (AIDS) is the final stage of HIV infection that occurs when the body's immune system is badly damaged by the virus.",
+    "precautions": ["Antiretroviral therapy (ART)", "Practice safe sex", "Avoid sharing needles", "Regular medical monitoring"],
+    "see_doctor": true,
+    "severity": "severe"
+  },
+  "Diabetes": {
+    "description": "A group of diseases that result in too much sugar in the blood (high blood glucose). Type 1 is autoimmune; Type 2 is lifestyle-related.",
+    "precautions": ["Monitor blood sugar regularly", "Follow a healthy diet", "Exercise daily", "Take prescribed medications consistently"],
+    "see_doctor": true,
+    "severity": "severe"
+  },
+  "Gastroenteritis": {
+    "description": "Inflammation of the stomach and intestines, typically resulting from a bacterial or viral infection. Also called stomach flu.",
+    "precautions": ["Stay hydrated with clear fluids", "Rest", "Avoid dairy and fatty foods", "Wash hands frequently"],
+    "see_doctor": false,
+    "severity": "mild"
+  },
+  "Bronchial Asthma": {
+    "description": "A condition where airways narrow, swell, and may produce extra mucus, making breathing difficult. Triggers include allergens, exercise, and cold air.",
+    "precautions": ["Carry a rescue inhaler", "Identify and avoid triggers", "Take controller medications as prescribed", "Monitor peak flow readings"],
+    "see_doctor": true,
+    "severity": "moderate"
+  },
+  "Hypertension": {
+    "description": "High blood pressure is a common condition where the long-term force of blood against artery walls is high enough to eventually cause health problems.",
+    "precautions": ["Reduce sodium intake", "Exercise regularly", "Maintain healthy weight", "Limit alcohol and quit smoking"],
+    "see_doctor": true,
+    "severity": "severe"
+  },
+  "Migraine": {
+    "description": "A neurological condition characterized by intense, debilitating headaches, often accompanied by nausea, vomiting, and sensitivity to light and sound.",
+    "precautions": ["Identify and avoid triggers", "Maintain regular sleep schedule", "Stay hydrated", "Manage stress"],
+    "see_doctor": false,
+    "severity": "moderate"
+  },
+  "Cervical spondylosis": {
+    "description": "Age-related wear and tear affecting the spinal disks in the neck. Can cause neck pain and stiffness, and sometimes pressure on the spinal cord or nerve roots.",
+    "precautions": ["Physical therapy exercises", "Use ergonomic furniture", "Apply heat/ice packs", "Avoid heavy lifting"],
+    "see_doctor": true,
+    "severity": "moderate"
+  },
+  "Paralysis (brain hemorrhage)": {
+    "description": "Loss of muscle function in part of the body due to bleeding in or around the brain. This is a medical emergency.",
+    "precautions": ["Seek immediate emergency care", "Control blood pressure", "Regular neurological follow-up", "Rehabilitation therapy"],
+    "see_doctor": true,
+    "severity": "severe"
+  },
+  "Jaundice": {
+    "description": "Yellowing of the skin and whites of the eyes caused by high levels of bilirubin. It can signal liver, gallbladder, or bile duct problems.",
+    "precautions": ["Avoid alcohol", "Stay hydrated", "Eat a low-fat diet", "Rest and avoid strenuous activity"],
+    "see_doctor": true,
+    "severity": "severe"
+  },
+  "Malaria": {
+    "description": "A disease caused by a Plasmodium parasite transmitted by infected Anopheles mosquitoes. Causes cycles of fever and chills.",
+    "precautions": ["Use insect repellent and bed nets", "Take antimalarial medication if traveling", "Wear protective clothing", "Seek treatment promptly"],
+    "see_doctor": true,
+    "severity": "severe"
+  },
+  "Chicken pox": {
+    "description": "A highly contagious viral infection causing an itchy, blister-like rash on the skin. Caused by the varicella-zoster virus.",
+    "precautions": ["Stay home and rest", "Apply calamine lotion for itching", "Cut fingernails short", "Take fever reducers if needed"],
+    "see_doctor": false,
+    "severity": "mild"
+  },
+  "Dengue": {
+    "description": "A mosquito-borne tropical disease caused by the dengue virus. Causes severe flu-like illness with high fever and pain behind the eyes.",
+    "precautions": ["Rest and stay hydrated", "Use mosquito repellent", "Monitor platelet count", "Avoid aspirin and NSAIDs"],
+    "see_doctor": true,
+    "severity": "severe"
+  },
+  "Typhoid": {
+    "description": "A bacterial infection due to Salmonella typhi. Spreads through contaminated food and water, causing high fever, weakness, and stomach pain.",
+    "precautions": ["Drink only purified water", "Eat well-cooked food", "Practice good hand hygiene", "Complete antibiotic course"],
+    "see_doctor": true,
+    "severity": "severe"
+  },
+  "hepatitis A": {
+    "description": "A highly contagious liver infection caused by the hepatitis A virus, usually spread through contaminated food or water.",
+    "precautions": ["Rest", "Avoid alcohol", "Eat small, nutritious meals", "Wash hands thoroughly"],
+    "see_doctor": true,
+    "severity": "moderate"
+  },
+  "Hepatitis B": {
+    "description": "A serious liver infection caused by the hepatitis B virus (HBV). Can become chronic and lead to liver failure, cancer, or cirrhosis.",
+    "precautions": ["Get vaccinated", "Avoid sharing needles", "Practice safe sex", "Regular liver function tests"],
+    "see_doctor": true,
+    "severity": "severe"
+  },
+  "Hepatitis C": {
+    "description": "A viral infection causing liver inflammation, sometimes leading to serious liver damage. Spread through contact with contaminated blood.",
+    "precautions": ["Avoid sharing needles", "Practice safe sex", "Get tested if at risk", "Antiviral treatment if diagnosed"],
+    "see_doctor": true,
+    "severity": "severe"
+  },
+  "Hepatitis D": {
+    "description": "A serious liver disease caused by the hepatitis D virus (HDV). It only infects people already infected with hepatitis B.",
+    "precautions": ["Hepatitis B vaccination prevents HDV", "Avoid sharing needles", "Practice safe sex", "Regular medical monitoring"],
+    "see_doctor": true,
+    "severity": "severe"
+  },
+  "Hepatitis E": {
+    "description": "A liver disease caused by the hepatitis E virus, spread mainly through contaminated water. Usually self-limiting in healthy adults.",
+    "precautions": ["Drink clean, safe water", "Practice good hand hygiene", "Avoid raw or undercooked foods", "Rest"],
+    "see_doctor": true,
+    "severity": "moderate"
+  },
+  "Alcoholic hepatitis": {
+    "description": "Inflammation of the liver caused by drinking too much alcohol. Can lead to liver failure in severe cases.",
+    "precautions": ["Stop drinking alcohol immediately", "Eat a nutritious diet", "Take prescribed medications", "Attend support programs"],
+    "see_doctor": true,
+    "severity": "severe"
+  },
+  "Tuberculosis": {
+    "description": "A potentially serious infectious disease that mainly affects the lungs. Caused by the bacterium Mycobacterium tuberculosis and spread through the air.",
+    "precautions": ["Complete the full antibiotic course", "Cover mouth when coughing", "Ensure good ventilation", "Regular check-ups"],
+    "see_doctor": true,
+    "severity": "severe"
+  },
+  "Common Cold": {
+    "description": "A viral infectious disease of the upper respiratory tract that primarily affects the nose. Caused by rhinovirus.",
+    "precautions": ["Rest and stay hydrated", "Use saline nasal spray", "Gargle with warm salt water", "Wash hands frequently"],
+    "see_doctor": false,
+    "severity": "mild"
+  },
+  "Pneumonia": {
+    "description": "An infection that inflames air sacs in one or both lungs, which may fill with fluid. Can range from mild to life-threatening.",
+    "precautions": ["Rest and stay hydrated", "Take prescribed antibiotics", "Use a humidifier", "Quit smoking"],
+    "see_doctor": true,
+    "severity": "severe"
+  },
+  "Dimorphic hemmorhoids (piles)": {
+    "description": "Swollen veins in the anus and lower rectum, similar to varicose veins. Can be internal or external.",
+    "precautions": ["Eat high-fiber diet", "Drink plenty of water", "Avoid straining during bowel movements", "Sitz baths for relief"],
+    "see_doctor": false,
+    "severity": "mild"
+  },
+  "Heart attack": {
+    "description": "A heart attack occurs when blood flow that brings oxygen to the heart muscle is severely reduced or cut off completely. This is a medical emergency.",
+    "precautions": ["Call emergency services immediately (911)", "Chew aspirin if not allergic", "Do not exert yourself", "Cardiopulmonary resuscitation if needed"],
+    "see_doctor": true,
+    "severity": "severe"
+  },
+  "Varicose veins": {
+    "description": "Gnarled, enlarged veins near the surface of the skin. They're most common in the legs and feet.",
+    "precautions": ["Exercise regularly", "Elevate legs when resting", "Avoid standing for long periods", "Wear compression stockings"],
+    "see_doctor": false,
+    "severity": "mild"
+  },
+  "Hypothyroidism": {
+    "description": "A condition where the thyroid gland doesn't produce enough thyroid hormone. Causes fatigue, weight gain, and cold sensitivity.",
+    "precautions": ["Take thyroid hormone replacement as prescribed", "Regular thyroid function tests", "Eat a balanced diet", "Exercise regularly"],
+    "see_doctor": true,
+    "severity": "moderate"
+  },
+  "Hyperthyroidism": {
+    "description": "A condition in which the thyroid gland produces too much thyroid hormone. Causes weight loss, rapid heart rate, and anxiety.",
+    "precautions": ["Take prescribed antithyroid medications", "Avoid iodine-rich foods", "Manage stress", "Regular follow-up appointments"],
+    "see_doctor": true,
+    "severity": "moderate"
+  },
+  "Hypoglycemia": {
+    "description": "A condition characterized by abnormally low blood sugar (glucose) levels. Common in people with diabetes.",
+    "precautions": ["Eat regular meals", "Carry fast-acting glucose (candy, juice)", "Monitor blood sugar", "Inform others about your condition"],
+    "see_doctor": true,
+    "severity": "moderate"
+  },
+  "Osteoarthritis": {
+    "description": "The most common form of arthritis, occurring when the protective cartilage that cushions the ends of bones wears down over time.",
+    "precautions": ["Exercise to strengthen muscles", "Maintain healthy weight", "Use hot/cold therapy", "Take pain relievers as needed"],
+    "see_doctor": false,
+    "severity": "moderate"
+  },
+  "Arthritis": {
+    "description": "Inflammation of one or more joints, causing pain and stiffness that can worsen with age. Many types exist including rheumatoid and psoriatic.",
+    "precautions": ["Low-impact exercise", "Physical therapy", "Anti-inflammatory medications", "Joint protection techniques"],
+    "see_doctor": true,
+    "severity": "moderate"
+  },
+  "(Vertigo) Paroxysmal Positional Vertigo": {
+    "description": "A sudden sensation that you're spinning or that the inside of your head is spinning. Triggered by specific changes in head position.",
+    "precautions": ["Canalith repositioning procedure (Epley maneuver)", "Avoid sudden head movements", "Sleep with head slightly elevated", "Avoid driving during episodes"],
+    "see_doctor": false,
+    "severity": "mild"
+  },
+  "Acne": {
+    "description": "A skin condition that occurs when hair follicles become plugged with oil and dead skin cells. Causes whiteheads, blackheads, and pimples.",
+    "precautions": ["Wash face twice daily with mild cleanser", "Avoid touching face", "Use non-comedogenic products", "Stay hydrated"],
+    "see_doctor": false,
+    "severity": "mild"
+  },
+  "Urinary tract infection": {
+    "description": "An infection in any part of the urinary system — kidneys, bladder, ureters, and urethra. Most infections involve the lower urinary tract.",
+    "precautions": ["Drink plenty of water", "Urinate after intercourse", "Wipe front to back", "Avoid holding urine"],
+    "see_doctor": true,
+    "severity": "moderate"
+  },
+  "Psoriasis": {
+    "description": "A skin disease that causes a rash with itchy, scaly patches, most commonly on the knees, elbows, trunk, and scalp.",
+    "precautions": ["Moisturize skin daily", "Avoid triggers (stress, smoking)", "Use prescribed topical treatments", "Get regular sunlight exposure"],
+    "see_doctor": false,
+    "severity": "mild"
+  },
+  "Impetigo": {
+    "description": "A highly contagious skin infection that mainly affects infants and children. Causes red sores that can break open, ooze fluid, and develop a honey-colored crust.",
+    "precautions": ["Keep affected skin clean", "Don't touch or scratch sores", "Wash hands frequently", "Avoid close contact until healed"],
+    "see_doctor": true,
+    "severity": "moderate"
+  }
+}

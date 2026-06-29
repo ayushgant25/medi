@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Symptom-to-Disease Predictor | AI Health Assistant</title>
+  <link rel="icon" href="/static/logo.png" type="image/png" />
+  <meta name="description" content="AI-powered symptom checker that predicts possible diseases based on your symptoms, with confidence scores and medical guidance. Educational tool — not a substitute for professional medical advice." />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <link rel="stylesheet" href="/static/css/style.css" />
+  
+  <!-- Google Translate Script -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'hi,mr,en', autoDisplay: false}, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body>
+
+  <!-- ─── Animated background ─────────────────────────────────────────── -->
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- ─── Header ──────────────────────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-icon" aria-hidden="true">
+          <img src="/static/logo.png" alt="Logo" style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%;">
+        </div>
+        <span class="logo-text">MediPredict<span class="logo-accent"> AI</span></span>
+      </div>
+
+      <div class="header-actions">
+        <button class="lang-btn" onclick="setLanguage('hi')">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" width="16" height="16">
+            <path d="M5 8l6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span id="btnTextHi">हिंदी</span>
+        </button>
+        <button class="lang-btn" onclick="setLanguage('mr')">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" width="16" height="16">
+            <path d="M5 8l6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span id="btnTextMr">मराठी</span>
+        </button>
+        <div class="model-badge" id="modelBadge">
+          <span class="badge-dot"></span>
+          <span id="modelName">{{ model_name }}</span>
+          &nbsp;·&nbsp;
+          <span id="modelAccuracy" class="badge-accuracy">{{ model_accuracy }}</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="google_translate_element" style="display:none;"></div>
+
+  <!-- ─── Hero ─────────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-tag">
+        <span class="tag-dot"></span>
+        AI-Powered Symptom Analysis
+      </div>
+      <h1 class="hero-title">
+        What's your body<br/>
+        <span class="gradient-text">trying to tell you?</span>
+      </h1>
+      <p class="hero-subtitle">
+        Select your symptoms and our machine learning model will suggest the most
+        likely conditions — with confidence scores, descriptions, and next-step guidance.
+      </p>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-number">{{ n_symptoms }}+</span>
+          <span class="stat-label">Symptoms</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-number">{{ n_diseases }}</span>
+          <span class="stat-label">Conditions</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-number">{{ model_accuracy }}</span>
+          <span class="stat-label">Accuracy</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Disclaimer Banner ─────────────────────────────────────────────── -->
+  <div class="disclaimer-banner" role="alert">
+    <svg class="disclaimer-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <p>
+      <strong>Medical Disclaimer:</strong> This tool is for <em>educational purposes only</em> and does <strong>not</strong> constitute medical advice or diagnosis. Always consult a licensed healthcare professional for any health concerns.
+    </p>
+  </div>
+
+  <!-- ─── Main App ──────────────────────────────────────────────────────── -->
+  <main class="main-container" id="mainApp">
+
+    <!-- Input Panel -->
+    <section class="card input-card" aria-labelledby="inputHeading">
+      <h2 id="inputHeading" class="card-title">
+        <svg class="card-title-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Enter Your Symptoms
+      </h2>
+
+      <!-- Mode Toggle -->
+      <div class="mode-toggle" role="tablist" aria-label="Input mode">
+        <button class="mode-btn active" id="checklistModeBtn" role="tab" aria-selected="true" aria-controls="checklistPanel" onclick="switchMode('checklist')">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Checklist Mode
+        </button>
+        <button class="mode-btn" id="textModeBtn" role="tab" aria-selected="false" aria-controls="textPanel" onclick="switchMode('text')">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 9l3 3-3 3m5 0h3M4 19h16a1 1 0 001-1V6a1 1 0 00-.293-.707l-3-3A1 1 0 0017 2H4a1 1 0 00-1 1v15a1 1 0 001 1z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Free Text Mode
+        </button>
+      </div>
+
+      <!-- Checklist Panel -->
+      <div id="checklistPanel" class="input-panel" role="tabpanel" aria-labelledby="checklistModeBtn">
+        <div class="symptom-search-wrap">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+            <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <input
+            type="search"
+            id="symptomSearch"
+            class="symptom-search"
+            placeholder="Search symptoms (e.g. fever, headache…)"
+            autocomplete="off"
+            aria-label="Search symptoms"
+            oninput="filterSymptoms(this.value)"
+          />
+        </div>
+
+        <!-- Selected tags -->
+        <div id="selectedTags" class="selected-tags" aria-live="polite" aria-label="Selected symptoms"></div>
+
+        <!-- Counter -->
+        <div class="symptom-counter">
+          <span id="selectedCount">0</span> symptoms selected
+          <span id="minSymptomHint" class="min-hint">(minimum 3 required)</span>
+        </div>
+
+        <!-- Symptom grid -->
+        <div id="symptomGrid" class="symptom-grid" role="group" aria-label="Available symptoms">
+          <div class="symptom-loading">
+            <div class="spinner-sm"></div>
+            Loading symptoms…
+          </div>
+        </div>
+      </div>
+
+      <!-- Free Text Panel -->
+      <div id="textPanel" class="input-panel hidden" role="tabpanel" aria-labelledby="textModeBtn">
+        <label for="freeTextInput" class="text-label">Describe your symptoms in your own words:</label>
+        <textarea
+          id="freeTextInput"
+          class="free-text-area"
+          rows="5"
+          placeholder="e.g. I have a bad headache, feel nauseous, and I've had a fever for two days. Also experiencing joint pain and chills."
+          aria-label="Describe your symptoms"
+          oninput="onTextInput(this.value)"
+        ></textarea>
+        <div id="nlpPreview" class="nlp-preview hidden" aria-live="polite">
+          <div class="nlp-title">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            Matched symptoms:
+          </div>
+          <div id="nlpMatchedTags" class="nlp-tags"></div>
+        </div>
+      </div>
+
+      <!-- Predict Button -->
+      <button
+        id="predictBtn"
+        class="predict-btn"
+        disabled
+        aria-disabled="true"
+        onclick="runPrediction()"
+      >
+        <span class="predict-btn-content">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Analyze Symptoms
+        </span>
+        <div class="btn-spinner hidden" aria-hidden="true"></div>
+      </button>
+
+      <p class="input-note">
+        Results are based on statistical patterns in medical data.
+        This is <strong>not</strong> a substitute for professional diagnosis.
+      </p>
+    </section>
+
+    <!-- Results Panel -->
+    <section class="results-section hidden" id="resultsSection" aria-labelledby="resultsHeading" aria-live="polite">
+
+      <!-- Emergency Banner -->
+      <div class="emergency-banner hidden" id="emergencyBanner" role="alert">
+        <div class="emergency-icon">🚨</div>
+        <div>
+          <strong>Seek Immediate Medical Care</strong>
+          <p id="emergencyText">Your symptoms include warning signs that may require urgent attention.</p>
+        </div>
+      </div>
+
+      <h2 id="resultsHeading" class="section-title">
+        <svg class="section-title-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Prediction Results
+      </h2>
+      <p class="results-subtitle">Based on <strong id="symptomsUsedList">—</strong></p>
+
+      <!-- Top disease cards -->
+      <div id="predictionCards" class="prediction-cards"></div>
+
+      <!-- Probability chart -->
+      <div class="card chart-card">
+        <h3 class="chart-title">Probability Distribution</h3>
+        <div class="chart-wrap">
+          <canvas id="probabilityChart" aria-label="Bar chart showing disease probabilities"></canvas>
+        </div>
+      </div>
+
+      <!-- ─── Hospital Finder ──────────────────────────────────────────── -->
+      <section class="hospital-finder card" id="hospitalFinder" aria-labelledby="hospitalHeading">
+        <div class="hospital-finder-header">
+          <div>
+            <h3 id="hospitalHeading" class="hospital-title">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Find Hospitals Near You
+            </h3>
+            <p class="hospital-subtitle">Based on your condition, we'll suggest the best hospitals in your area.</p>
+          </div>
+        </div>
+
+        <!-- PIN code input -->
+        <div class="pincode-form" id="pincodeForm">
+          <div class="pincode-input-wrap">
+            <svg class="pincode-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <input
+              type="text"
+              id="pincodeInput"
+              class="pincode-input"
+              placeholder="Enter your 6-digit PIN code"
+              maxlength="6"
+              inputmode="numeric"
+              pattern="[0-9]{6}"
+              aria-label="Enter PIN code"
+              oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+            />
+            <button class="pincode-btn" id="findHospitalsBtn" onclick="findHospitals()">
+              <span class="pincode-btn-text">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                Search
+              </span>
+              <div class="pincode-spinner hidden"></div>
+            </button>
+          </div>
+          <p class="pincode-note">Searches within 10 km radius · Powered by OpenStreetMap</p>
+        </div>
+
+        <!-- Hospital results -->
+        <div id="hospitalResults" class="hospital-results hidden" aria-live="polite"></div>
+      </section>
+
+      <!-- Disclaimer in results -->
+      <div class="results-disclaimer" role="note">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+          <path d="M12 8v4m0 4h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <p>
+          <strong>Remember:</strong> This AI prediction is for educational purposes only.
+          The results should <em>not</em> be used as a basis for self-diagnosis or self-treatment.
+          Always consult a qualified healthcare professional for proper medical evaluation.
+        </p>
+      </div>
+
+      <!-- Try again -->
+      <button class="reset-btn" onclick="resetApp()">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M1 4v6h6M23 20v-6h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Start New Analysis
+      </button>
+    </section>
+
+
+  </main>
+
+  <!-- ─── Footer ───────────────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <p>
+      MediPredict AI · Educational Tool Only ·
+      <span class="footer-disclaimer">Not a medical device or licensed diagnostic tool</span>
+    </p>
+    <p class="footer-sub">
+      Model: <span id="footerModelName">{{ model_name }}</span> ·
+      Accuracy: <span id="footerAccuracy">{{ model_accuracy }}</span> ·
+      Dataset: Disease Prediction (Kaggle)
+    </p>
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
