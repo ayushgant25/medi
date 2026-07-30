@@ -4,3 +4,4 @@ scikit-learn==1.5.1
 joblib==1.4.2
 numpy==1.26.4
 gunicorn==20.1.0
+setuptools
