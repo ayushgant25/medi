@@ -19,8 +19,14 @@ from utils import (
     format_symptom_display,
 )
 
+import sys
+
 # ─── Paths ────────────────────────────────────────────────────────────────────
-BASE_DIR    = os.path.dirname(os.path.abspath(__file__))
+if getattr(sys, 'frozen', False):
+    BASE_DIR = sys._MEIPASS
+else:
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 MODEL_DIR   = os.path.join(BASE_DIR, 'model')
 MODEL_FILE  = os.path.join(MODEL_DIR, 'best_model.pkl')
 ENCODER_FILE = os.path.join(MODEL_DIR, 'label_encoder.pkl')
@@ -100,7 +106,9 @@ except FileNotFoundError as e:
     ALL_DISEASES    = []
 
 # ─── Flask app ────────────────────────────────────────────────────────────────
-app = Flask(__name__)
+app = Flask(__name__,
+            template_folder=os.path.join(BASE_DIR, 'templates'),
+            static_folder=os.path.join(BASE_DIR, 'static'))
 
 
 @app.route('/')
@@ -377,7 +385,15 @@ def health():
     return jsonify({'status': 'ok', 'model_loaded': MODEL_LOADED})
 
 
+import threading
+import webbrowser
+
 if __name__ == '__main__':
     print("\nStarting Symptom-to-Disease Predictor...")
-    print("   Open http://127.0.0.1:5000 in your browser\n")
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    print("   Opening http://127.0.0.1:5000 in your browser...\n")
+    
+    # Automatically open the browser after a 1 second delay
+    threading.Timer(1.25, lambda: webbrowser.open('http://127.0.0.1:5000')).start()
+    
+    # Disable reloader so it doesn't open two tabs
+    app.run(debug=True, use_reloader=False, host='0.0.0.0', port=5000)
