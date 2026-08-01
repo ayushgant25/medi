@@ -9,7 +9,7 @@ import joblib
 import urllib.request
 import urllib.parse
 import numpy as np
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 
 from utils import (
     preprocess_symptoms,
@@ -121,6 +121,22 @@ def index():
         n_symptoms=len(feature_columns),
         n_diseases=len(ALL_DISEASES),
     )
+
+
+@app.route('/google0881dea34fe83802.html')
+def google_verification():
+    return send_from_directory(BASE_DIR, 'google0881dea34fe83802.html')
+
+
+@app.route('/robots.txt')
+def robots():
+    return send_from_directory(BASE_DIR, 'robots.txt')
+
+
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory(BASE_DIR, 'sitemap.xml')
+
 
 
 @app.route('/symptoms', methods=['GET'])
