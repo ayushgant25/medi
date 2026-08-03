@@ -128,6 +128,18 @@ def google_verification():
     return send_from_directory(BASE_DIR, 'google0881dea34fe83802.html')
 
 
+@app.route('/google128ef43454712b5d.html')
+def google_verification_128ef():
+    return send_from_directory(BASE_DIR, 'google128ef43454712b5d.html')
+
+
+@app.route('/googleW334dBWiFdA_usUgD87mRafDQD8N3K2cH75qK7lr5a0.html')
+def google_verification_new():
+    return "google-site-verification: googleW334dBWiFdA_usUgD87mRafDQD8N3K2cH75qK7lr5a0.html"
+
+
+
+
 @app.route('/robots.txt')
 def robots():
     return send_from_directory(BASE_DIR, 'robots.txt')
