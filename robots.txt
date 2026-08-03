@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://medipredict-ai-2-2taw.onrender.com/sitemap.xml
+Sitemap: https://medi-7m6f.onrender.com/sitemap.xml
